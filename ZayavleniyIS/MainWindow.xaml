@@ -1,0 +1,16 @@
+﻿<Window x:Class="ZayavleniyIS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZayavleniyIS"
+        mc:Ignorable="d"
+        Title="Окно авторизации" Height="450" Width="350" Style="{StaticResource windowStyle}">
+    <Grid>
+        <Label x:Name="label" FontSize="20"  Content="Авторизация в системе" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Width="234"/>
+        <TextBox x:Name="logintextBox" HorizontalAlignment="Left" Height="35" Margin="89,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Center" Margin="89,254,97,0" VerticalAlignment="Top" Width="156" Height="35"/>
+        <Button x:Name="button_auth" Content="Войти в систему" HorizontalAlignment="Center" Margin="106,324,116,0" VerticalAlignment="Top" Width="110" Height="29" Click="Button_auth_click"/>
+
+    </Grid>
+</Window>

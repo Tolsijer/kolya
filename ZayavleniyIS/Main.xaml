@@ -1,0 +1,43 @@
+﻿<Window x:Class="ZayavleniyIS.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZayavleniyIS"
+        mc:Ignorable="d"
+        Title="Main" Height="450" Width="800">
+    <Grid>
+        <Image x:Name="image_profiel" HorizontalAlignment="Left" Height="152" Margin="420,20,0,0" VerticalAlignment="Top" Width="216" Source="Resources/Images/image_profile.png"/>
+        <Label x:Name="family_Label" Content="Фамилия" HorizontalAlignment="Left" Margin="656,20,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="name_label1" Content="Имя" HorizontalAlignment="Left" Margin="656,51,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="exit_button" Content="Выйти" HorizontalAlignment="Left" Margin="656,132,0,0" VerticalAlignment="Top" Width="75" Click="Exit_button_Click"/>
+        <DataGrid AutoGenerateColumns="false" x:Name="dataGridZayvka" HorizontalAlignment="Left" Height="233" Margin="10,176,0,0" VerticalAlignment="Top" Width="772">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Информация">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Tag="{Binding zvl}" MouseDoubleClick="Label_MouseDoubleClock" Content="{Binding zvlName}"></Label>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTextColumn Header="Сроки" Binding="{Binding Sroki}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата закрытия" Binding="{Binding zkrt}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Заявитель" Binding="{Binding zayvitel123}"></DataGridTextColumn>
+                <DataGridTemplateColumn Width ="auto" Header="А СВЕРХУ ГУСЪ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Tag="{Binding zvl}" Content="Редактировать" x:Name="button" HorizontalAlignment="Left" Margin="258,45,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="zayva" Content="Заявление подбробно" HorizontalAlignment="Left" Margin="258,120,0,0" VerticalAlignment="Top" Width="147" Click="Zayva_Click"/>
+        <Button x:Name="button_svapfoto" Content="Сменить фото" HorizontalAlignment="Left" Margin="656,87,0,0" VerticalAlignment="Top" Width="75" Click="Button_svapfoto_Click"/>
+        <Button x:Name="button" Content="Добавить" HorizontalAlignment="Left" Margin="258,20,0,0" VerticalAlignment="Top" Width="147" Click="Button_Click_1"/>
+        <Button x:Name="diagramm_button1" Content="Button" HorizontalAlignment="Left" Margin="290,72,0,0" VerticalAlignment="Top" Width="75" Click="Diagramm_button1_Click"/>
+    </Grid>
+</Window>

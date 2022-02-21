@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9ec432c174f432aaed97f676afebc67" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ip14Model.doljnosti" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ip14Model.otzivi" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ip14Model.rehennie_zayvleniy" Width="1.5" PointX="7.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ip14Model.sotrudniki" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ip14Model.svoistva_zayvleni" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ip14Model.zayvitel" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ip14Model.Zayvleniy" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="ip14Model.FK_sotrudniki_doljnosti" ManuallyRouted="false" />
+        <AssociationConnector Association="ip14Model.FK_otzivi_zayvitel" ManuallyRouted="false" />
+        <AssociationConnector Association="ip14Model.FK_rehennie_zayvleniy_otzivi" ManuallyRouted="false" />
+        <AssociationConnector Association="ip14Model.FK_rehennie_zayvleniy_svoistva_zayvleni" ManuallyRouted="false" />
+        <AssociationConnector Association="ip14Model.FK_svoistva_zayvleni_sotrudniki" ManuallyRouted="false" />
+        <AssociationConnector Association="ip14Model.FK_Zayvleniy_svoistva_zayvleni" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ip14Model.View_1" Width="1.5" PointX="7.375" PointY="8.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ip14Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="doljnosti">
+    <Key>
+      <PropertyRef Name="id_должности" />
+    </Key>
+    <Property Name="id_должности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="должность" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="otzivi">
+    <Key>
+      <PropertyRef Name="id_отзыва" />
+    </Key>
+    <Property Name="id_отзыва" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="дата" Type="nvarchar" MaxLength="100" />
+    <Property Name="состояние" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_заявителя" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rehennie_zayvleniy">
+    <Key>
+      <PropertyRef Name="Номер_закрытия_заявления" />
+    </Key>
+    <Property Name="Номер_закрытия_заявления" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Дата" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_свойств" Type="int" Nullable="false" />
+    <Property Name="id_отзыва" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sotrudniki">
+    <Key>
+      <PropertyRef Name="id_сотрудника" />
+    </Key>
+    <Property Name="id_сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="100" />
+    <Property Name="Имя" Type="nvarchar" MaxLength="100" />
+    <Property Name="Отчество" Type="nvarchar" MaxLength="100" />
+    <Property Name="Логин" Type="nvarchar" MaxLength="100" />
+    <Property Name="Пароль" Type="nvarchar" MaxLength="100" />
+    <Property Name="Номер_телефона" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_должности" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="svoistva_zayvleni">
+    <Key>
+      <PropertyRef Name="id_свойств" />
+    </Key>
+    <Property Name="id_свойств" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="срок" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_сотрудник" Type="int" Nullable="false" />
+    <Property Name="вид" Type="nvarchar" MaxLength="100" />
+    <Property Name="статус" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="zayvitel">
+    <Key>
+      <PropertyRef Name="id_заявителя" />
+    </Key>
+    <Property Name="id_заявителя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="100" />
+    <Property Name="Имя" Type="nvarchar" MaxLength="100" />
+    <Property Name="Отчество" Type="nvarchar" MaxLength="100" />
+    <Property Name="Номер_телефона" Type="nvarchar" MaxLength="100" />
+    <Property Name="серия_паспорта" Type="nvarchar" MaxLength="100" />
+    <Property Name="номер_паспорта" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Zayvleniy">
+    <Key>
+      <PropertyRef Name="Номер_заявления" />
+    </Key>
+    <Property Name="Номер_заявления" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_свойств" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "18ip14.dbo.View_1" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="View_1">
+    <Key>
+      <PropertyRef Name="Номер_заявления" />
+      <PropertyRef Name="id_сотрудника" />
+    </Key>
+    <Property Name="Номер_заявления" Type="int" Nullable="false" />
+    <Property Name="Наименование" Type="nvarchar" MaxLength="100" />
+    <Property Name="срок" Type="nvarchar" MaxLength="100" />
+    <Property Name="id_сотрудника" Type="int" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar" MaxLength="100" />
+    <Property Name="статус" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_otzivi_zayvitel">
+    <End Role="zayvitel" Type="Self.zayvitel" Multiplicity="1" />
+    <End Role="otzivi" Type="Self.otzivi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zayvitel">
+        <PropertyRef Name="id_заявителя" />
+      </Principal>
+      <Dependent Role="otzivi">
+        <PropertyRef Name="id_заявителя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehennie_zayvleniy_otzivi">
+    <End Role="otzivi" Type="Self.otzivi" Multiplicity="1" />
+    <End Role="rehennie_zayvleniy" Type="Self.rehennie_zayvleniy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="otzivi">
+        <PropertyRef Name="id_отзыва" />
+      </Principal>
+      <Dependent Role="rehennie_zayvleniy">
+        <PropertyRef Name="id_отзыва" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rehennie_zayvleniy_svoistva_zayvleni">
+    <End Role="svoistva_zayvleni" Type="Self.svoistva_zayvleni" Multiplicity="1" />
+    <End Role="rehennie_zayvleniy" Type="Self.rehennie_zayvleniy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="svoistva_zayvleni">
+        <PropertyRef Name="id_свойств" />
+      </Principal>
+      <Dependent Role="rehennie_zayvleniy">
+        <PropertyRef Name="id_свойств" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sotrudniki_doljnosti">
+    <End Role="doljnosti" Type="Self.doljnosti" Multiplicity="1" />
+    <End Role="sotrudniki" Type="Self.sotrudniki" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doljnosti">
+        <PropertyRef Name="id_должности" />
+      </Principal>
+      <Dependent Role="sotrudniki">
+        <PropertyRef Name="id_должности" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_svoistva_zayvleni_sotrudniki">
+    <End Role="sotrudniki" Type="Self.sotrudniki" Multiplicity="1" />
+    <End Role="svoistva_zayvleni" Type="Self.svoistva_zayvleni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sotrudniki">
+        <PropertyRef Name="id_сотрудника" />
+      </Principal>
+      <Dependent Role="svoistva_zayvleni">
+        <PropertyRef Name="id_сотрудник" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zayvleniy_svoistva_zayvleni">
+    <End Role="svoistva_zayvleni" Type="Self.svoistva_zayvleni" Multiplicity="1" />
+    <End Role="Zayvleniy" Type="Self.Zayvleniy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="svoistva_zayvleni">
+        <PropertyRef Name="id_свойств" />
+      </Principal>
+      <Dependent Role="Zayvleniy">
+        <PropertyRef Name="id_свойств" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ip14ModelContainer">
+    <EntitySet Name="doljnosti" EntityType="Self.doljnosti" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="otzivi" EntityType="Self.otzivi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rehennie_zayvleniy" EntityType="Self.rehennie_zayvleniy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sotrudniki" EntityType="Self.sotrudniki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="svoistva_zayvleni" EntityType="Self.svoistva_zayvleni" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zayvitel" EntityType="Self.zayvitel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zayvleniy" EntityType="Self.Zayvleniy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_1" EntityType="Self.View_1" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_1].[Номер_заявления] AS [Номер_заявления], 
+    [View_1].[Наименование] AS [Наименование], 
+    [View_1].[срок] AS [срок], 
+    [View_1].[id_сотрудника] AS [id_сотрудника], 
+    [View_1].[Фамилия] AS [Фамилия], 
+    [View_1].[статус] AS [статус]
+    FROM [dbo].[View_1] AS [View_1]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_otzivi_zayvitel" Association="Self.FK_otzivi_zayvitel">
+      <End Role="zayvitel" EntitySet="zayvitel" />
+      <End Role="otzivi" EntitySet="otzivi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehennie_zayvleniy_otzivi" Association="Self.FK_rehennie_zayvleniy_otzivi">
+      <End Role="otzivi" EntitySet="otzivi" />
+      <End Role="rehennie_zayvleniy" EntitySet="rehennie_zayvleniy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rehennie_zayvleniy_svoistva_zayvleni" Association="Self.FK_rehennie_zayvleniy_svoistva_zayvleni">
+      <End Role="svoistva_zayvleni" EntitySet="svoistva_zayvleni" />
+      <End Role="rehennie_zayvleniy" EntitySet="rehennie_zayvleniy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sotrudniki_doljnosti" Association="Self.FK_sotrudniki_doljnosti">
+      <End Role="doljnosti" EntitySet="doljnosti" />
+      <End Role="sotrudniki" EntitySet="sotrudniki" />
+    </AssociationSet>
+    <AssociationSet Name="FK_svoistva_zayvleni_sotrudniki" Association="Self.FK_svoistva_zayvleni_sotrudniki">
+      <End Role="sotrudniki" EntitySet="sotrudniki" />
+      <End Role="svoistva_zayvleni" EntitySet="svoistva_zayvleni" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zayvleniy_svoistva_zayvleni" Association="Self.FK_Zayvleniy_svoistva_zayvleni">
+      <End Role="svoistva_zayvleni" EntitySet="svoistva_zayvleni" />
+      <End Role="Zayvleniy" EntitySet="Zayvleniy" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
